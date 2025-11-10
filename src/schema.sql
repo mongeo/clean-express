@@ -1,4 +1,6 @@
-
+-- Safely create extensions
+CREATE EXTENSION IF NOT EXISTS citext WITH SCHEMA public;
+CREATE EXTENSION IF NOT EXISTS btree_gist WITH SCHEMA public;
 CREATE EXTENSION IF NOT EXISTS plpgsql;
 
 -- Create enums only if not exists
