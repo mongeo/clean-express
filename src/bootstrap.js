@@ -1,17 +1,17 @@
 const pool = require("./config/db");
+const fs = require("fs");
 
 // Ensure extensions/tables exist on startup (local dev convenience)
-async function ensureSchema() {
-  // Enable pgcrypto for gen_random_uuid (or swap to uuid-ossp)
-  await pool.query("CREATE EXTENSION IF NOT EXISTS pgcrypto");
-  await pool.query(`
-    CREATE TABLE IF NOT EXISTS users (
-      id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-      name TEXT NOT NULL,
-      email TEXT UNIQUE NOT NULL,
-      created_at TIMESTAMPTZ NOT NULL DEFAULT now()
-    )
-  `);
+async function applySchema() {
+  try {
+    const schemaSql = fs.readFileSync("./src/schema.sql", "utf8");
+    await pool.query(schemaSql);
+    console.log("Database schema applied successfully.");
+  } catch (error) {
+    console.error("Error applying database schema:", error);
+  } finally {
+    await pool.end(); // Close the connection pool
+  }
 }
 
-module.exports = { ensureSchema };
+module.exports = { applySchema };
