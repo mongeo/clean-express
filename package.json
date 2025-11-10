@@ -9,6 +9,7 @@
     "db:bootstrap": "node -e \"require('./src/bootstrap').ensureSchema().then(()=>console.log('ok')).catch(console.error)\""
   },
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "pg": "^8.12.0"
