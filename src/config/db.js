@@ -1,16 +1,16 @@
+require('dotenv').config();
+
 const { Pool } = require("pg");
-require("dotenv").config();
 
-const isSsl = process.env.PGSSL === "true";
+// Create a connection pool using environment variables from .env
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: isSsl ? { rejectUnauthorized: false } : undefined,
+  user: process.env.PGUSER,
+  password: process.env.PGPASSWORD,
+  host: process.env.PGHOST,
+  database: process.env.PGDATABASE,
+  port: process.env.PGPORT || 5432,
+  // ssl: { rejectUnauthorized: false } // If deploying to Heroku/AWS RDS, uncomment for SSL
 });
 
-// Optional: global error safety for idle clients
-pool.on("error", (err) => {
-  console.error("Unexpected PG pool error", err);
-  process.exit(1);
-});
-
+// Export the pool for use elsewhere in your app
 module.exports = pool;

@@ -1,10 +1,10 @@
-const pool = require("./config/db");
+const pool = require("./db");
 const fs = require("fs");
 
 // Ensure extensions/tables exist on startup (local dev convenience)
 async function applySchema() {
   try {
-    const schemaSql = fs.readFileSync("./src/schema.sql", "utf8");
+    const schemaSql = fs.readFileSync("./src/config/schema.sql", "utf8");
     await pool.query(schemaSql);
     console.log("Database schema applied successfully.");
   } catch (error) {

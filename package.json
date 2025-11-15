@@ -2,15 +2,15 @@
   "name": "express-pg-min",
   "version": "1.0.0",
   "type": "commonjs",
-  "main": "src/app.js",
+  "main": "app.js",
   "scripts": {
-    "dev": "nodemon src/app.js",
-    "start": "node src/app.js",
-    "db:bootstrap": "node -e \"require('./src/bootstrap').ensureSchema().then(()=>console.log('ok')).catch(console.error)\""
+    "dev": "nodemon app.js",
+    "start": "node app.js",
+    "db:bootstrap": "node -e \"require('./src/config/bootstrap').ensureSchema().then(()=>console.log('ok')).catch(console.error)\""
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
-    "dotenv": "^16.4.5",
+    "dotenv": "^16.6.1",
     "express": "^4.19.2",
     "pg": "^8.12.0"
   },
