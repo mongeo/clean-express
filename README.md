@@ -34,21 +34,22 @@ cleaner-service-app/
 │   ├── seed/                   # Seed scripts for initial data
 │   ├── middleware/             # Express middleware (auth, logging, etc.)
 │   ├── app.js                  # Express app bootstrap
-│   └── server.js               # Start server (listen)
+│   ├── server.js               # Start server (listen)
+│   ├── .env                    # Environment variables 
+|   └── package.json            # Backend dependencies
 │
 ├── frontend/                   # React (or other) frontend app
 │   ├── public/                 # Static assets like index.html, favicon
 │   ├── src/
-│   │   ├── components/         # Reusable UI components (e.g., UsersList, ServicesList)
+│   │   ├── components/         # Reusable UI components
 │   │   ├── pages/              # App-level pages (Home, Dashboard, Booking, etc.)
 │   │   ├── hooks/              # Custom React hooks
 │   │   ├── services/           # API service functions (fetchers)
 │   │   ├── styles/             # CSS/SCSS files or styled-components
 │   │   ├── App.js              # React root component and routing setup
 │   │   └── index.js            # React entry point
-│   ├── package.json            # Frontend dependencies
+│   └── package.json            # Frontend dependencies
 │
-├── .env                       # Environment variables (shared or separated by folder)
 ├── .gitignore
 ├── package.json               # Root-level scripts and dependencies (can be empty)
 └── README.md
