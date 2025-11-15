@@ -1,31 +1,32 @@
 import React, { useEffect, useState } from "react";
 
+import { fetchReviews } from "../services/reviewService";
+
 export default function ReviewsList() {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("/reviews")
-      .then((res) => res.json())
-      .then((data) => {
-        setReviews(data);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+    fetchReviews()
+      .then(setReviews)
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false));
   }, []);
 
   if (loading) return <p>Loading reviews...</p>;
-
+  if (error) return <p>Error loading reviews: {error}</p>;
   return (
     <table>
       <thead>
         <tr>
-          <th>ID</th>
-          <th>Appointment</th>
-          <th>Customer</th>
-          <th>Cleaner</th>
+          <th>Review ID</th>
+          <th>Appointment ID</th>
+          <th>Customer ID</th>
+          <th>Cleaner ID</th>
           <th>Rating</th>
           <th>Comment</th>
+          <th>Created</th>
         </tr>
       </thead>
       <tbody>
@@ -37,6 +38,9 @@ export default function ReviewsList() {
             <td>{r.cleaner_id}</td>
             <td>{r.rating}</td>
             <td>{r.comment}</td>
+            <td>
+              {r.created_at ? new Date(r.created_at).toLocaleString() : ""}
+            </td>
           </tr>
         ))}
       </tbody>
