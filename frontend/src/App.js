@@ -6,6 +6,7 @@ import {
   NavLink,
 } from "react-router-dom";
 import UsersPage from "./pages/UsersPage";
+import AppointmentsPage from "./pages/AppointmentsPage";
 
 function Header() {
   return (
@@ -44,6 +45,7 @@ export default function App() {
       <main style={{ padding: "1rem" }}>
         <Routes>
           <Route path="/users" element={<UsersPage />} />
+          <Route path="/appointments" element={<AppointmentsPage />} />
           <Route path="*" element={<p>Page not found</p>} />
         </Routes>
       </main>
