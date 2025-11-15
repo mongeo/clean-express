@@ -7,17 +7,25 @@ import {
 } from "react-router-dom";
 import UsersPage from "./pages/UsersPage";
 import AppointmentsPage from "./pages/AppointmentsPage";
+import HomePage from "./pages/HomePage";
+import DashboardPage from "./pages/DashboardPage";
+import logo from "./assets/cleaner_logo.png"; 
 
 function Header() {
   return (
     <header style={{ background: "#0077cc", padding: "1rem", color: "white" }}>
+      <img
+        src={logo}
+        alt="Logo"
+        style={{ height: "30px", marginRight: "1rem" }}
+      />
       <nav>
         <NavLink
-          to="/users"
+          to="/dashboard"
           style={{ margin: "0 10px" }}
           activeStyle={{ fontWeight: "bold" }}
         >
-          Users
+          Dashboard
         </NavLink>
         <NavLink
           to="/services"
@@ -46,6 +54,8 @@ export default function App() {
         <Routes>
           <Route path="/users" element={<UsersPage />} />
           <Route path="/appointments" element={<AppointmentsPage />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="*" element={<p>Page not found</p>} />
         </Routes>
       </main>

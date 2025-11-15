@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { fetchPayments} from "../services/paymentsService";
 
 export default function PaymentsList() {
   const [payments, setPayments] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("/payments")
-      .then((res) => res.json())
-      .then((data) => {
-        setPayments(data);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+    fetchPayments()
+      .then(setPayments)
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false));
   }, []);
 
   if (loading) return <p>Loading payments...</p>;
@@ -25,7 +24,7 @@ export default function PaymentsList() {
           <th>Amount</th>
           <th>Status</th>
           <th>Provider</th>
-          <th>Captured At</th>
+          <th>Created At</th>
         </tr>
       </thead>
       <tbody>
@@ -37,7 +36,7 @@ export default function PaymentsList() {
             <td>{p.payment_status}</td>
             <td>{p.provider}</td>
             <td>
-              {p.captured_at ? new Date(p.captured_at).toLocaleString() : ""}
+              {p.created_at ? new Date(p.captured_at).toLocaleString() : ""}
             </td>
           </tr>
         ))}
