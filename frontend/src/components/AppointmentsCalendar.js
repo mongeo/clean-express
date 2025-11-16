@@ -37,7 +37,7 @@ export default function AppointmentsCalendar() {
   }, []);
 
   const handleSelectSlot = ({ start, end }) => {
-    alert(`Selected slot from ${start} to ${end}`);
+    console.log(`Selected slot from ${start} to ${end}`);
     // You can open a modal or form to create a new appointment here
   };
 

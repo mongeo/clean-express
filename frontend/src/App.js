@@ -10,7 +10,7 @@ import UsersPage from "./pages/UsersPage";
 import HomePage from "./pages/HomePage";
 import DashboardPage from "./pages/DashboardPage";
 import logo from "./assets/cleaner_logo.png"; 
-import AppointmentsCalendar from "./components/AppointmentsCalendar";
+import AppointmentDash from "./pages/AppointmentDash";
 
 function Header() {
   return (
@@ -54,7 +54,7 @@ export default function App() {
       <main style={{ padding: "1rem" }}>
         <Routes>
           <Route path="/users" element={<UsersPage />} />
-          <Route path="/appointments" element={<AppointmentsCalendar />} />
+          <Route path="/appointments" element={<AppointmentDash />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="*" element={<p>Page not found</p>} />
